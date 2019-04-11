@@ -10,7 +10,7 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 variables:
-  imageName: 'your-container-image-name:$(build.buildId)'
+  imageName: '$(Build.Repository.Name):$(Build.BuildId)'
 
 steps:
 - script: docker build -f Dockerfile -t $(imageName) .
@@ -22,5 +22,5 @@ steps:
     azureSubscriptionEndpoint: 'Reform-CFT-VH-Dev'
     azureContainerRegistry: vhinfrastructure.azurecr.io
     command: Push an image
-    imageName: $(Build.Repository.Name):$(Build.BuildId)
+    imageName: $(imageName)
 
