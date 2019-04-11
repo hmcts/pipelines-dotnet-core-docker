@@ -15,3 +15,11 @@ variables:
 steps:
 - script: docker build -f Dockerfile -t $(imageName) .
   displayName: 'docker build'
+
+- task: Docker@1
+  displayName: 'Push an image'
+  inputs:
+    azureSubscriptionEndpoint: 'Reform-CFT-VH-Dev'
+    azureContainerRegistry: vhinfrastructure.azurecr.io
+    command: 'Push an image'
+
