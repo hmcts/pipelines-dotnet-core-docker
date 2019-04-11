@@ -39,5 +39,5 @@ steps:
     azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
     azureContainerRegistry: $(azureContainerRegistry)
     command: Push an image
-    imageName: $(imageName)
+    imageName: $(azureContainerRegistry)/$(Build.Repository.Name):$(Build.BuildId)
 
