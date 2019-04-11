@@ -21,5 +21,6 @@ steps:
   inputs:
     azureSubscriptionEndpoint: 'Reform-CFT-VH-Dev'
     azureContainerRegistry: vhinfrastructure.azurecr.io
-    command: 'Push an image'
+    command: Push an image
+    imageName: $(Build.Repository.Name):$(Build.BuildId)
 
