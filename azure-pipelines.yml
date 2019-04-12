@@ -41,3 +41,11 @@ steps:
     command: Push an image
     imageName: $(azureContainerRegistry)/$(Build.Repository.Name):$(Build.BuildId)
 
+- task: Docker@1
+  displayName: 'Push an image'
+  inputs:
+    azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+    azureContainerRegistry: $(azureContainerRegistry)
+    command: Push an image
+    imageName: $(azureContainerRegistry)/$(Build.Repository.Name):latest
+
