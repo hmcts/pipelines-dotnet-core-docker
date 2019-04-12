@@ -51,3 +51,14 @@ steps:
 
 - task: HelmInstaller@0
   displayName: 'Install Helm 2.9.1'
+
+- task: HelmDeploy@0
+  displayName: 'helm upgrade'
+  inputs:
+    azureSubscription: 'Reform-CFT-VH-Dev'
+    azureResourceGroup: 'vh_dev_kubernetes_resource_group'
+    kubernetesCluster: 'vh_vhazure_dev'
+    namespace: default
+    command: upgrade
+    chartType: FilePath
+    chartPath: 'vh-web-app'
