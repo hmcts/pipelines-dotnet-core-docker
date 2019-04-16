@@ -5,8 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: nginx
-  tag: stable
+  repository: vhinfrastructure.azurecr.io/hmcts/vh-dotnet-core-docker
+  tag: latest
   pullPolicy: IfNotPresent
 
 nameOverride: ""

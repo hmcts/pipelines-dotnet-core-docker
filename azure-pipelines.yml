@@ -49,6 +49,11 @@ steps:
     command: Push an image
     imageName: $(azureContainerRegistry)/$(Build.Repository.Name):latest
 
+
+- bash: |
+   helm repo add $(registryName) https://$(registryName).azurecr.io/helm/v1/repo --username $(registryLogin) --password $(registryPassword) 
+  displayName: 'Bash Script'
+
 - task: HelmInstaller@0
   displayName: 'Install Helm 2.9.1'
 
