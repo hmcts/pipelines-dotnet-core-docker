@@ -68,6 +68,7 @@ steps:
   displayName: 'Install Helm $(helmVersion)'
   inputs: 
     helmVersion: $(helmVersion)
+    checkLatestHelmVersion: false
 
 - task: HelmDeploy@0
   inputs:
