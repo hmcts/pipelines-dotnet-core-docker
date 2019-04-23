@@ -54,12 +54,13 @@ steps:
   displayName: 'Install Helm 2.9.1'
 
 - task: HelmDeploy@0
-  displayName: 'helm upgrade'
   inputs:
-    azureSubscription: 'Reform-CFT-VH-Dev'
-    azureResourceGroup: 'vh_dev_kubernetes_resource_group'
-    kubernetesCluster: 'vh_vhazure_dev'
-    namespace: default
-    command: upgrade
-    chartType: FilePath
-    chartPath: 'vh-web-app'
+    connectionType: 'Kubernetes Service Connection'
+    kubernetesServiceEndpoint: 'a993ee82-40e5-4d87-a6f1-75f0a0458016'
+    namespace: 'default'
+    command: 'install'
+    chartName: 'vh-web-app'
+    enableTls: true
+    caCert: 'vh_kube_dev_ca.cert.pem'
+    certificate: 'vh_kube_dev_helm.cert.pem'
+    privatekey: 'vh_kube_dev_helm.key.pem'
