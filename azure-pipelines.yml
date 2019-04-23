@@ -83,3 +83,4 @@ steps:
     certificate: 'vh_kube_dev_helm.cert.pem'
     privatekey: 'vh_kube_dev_helm.key.pem'
     waitForExecution: false
+    releaseName: 'vh-web-app'
