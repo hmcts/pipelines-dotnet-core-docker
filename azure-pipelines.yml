@@ -15,6 +15,11 @@ variables:
   azureContainerRegistry: 'vhinfrastructure.azurecr.io'
 
 steps:
+
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'vh_kube_dev_helm.key.pem'
+
 - task: Docker@1
   displayName: Build image
   inputs:
