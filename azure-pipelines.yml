@@ -13,6 +13,7 @@ variables:
   imageName: 'vhinfrastructure.azurecr.io/vh-docker:$(Build.BuildId)'
   azureSubscriptionEndpoint: 'Reform-CFT-VH-Dev'
   azureContainerRegistry: 'vhinfrastructure.azurecr.io'
+  helmVersion: '2.12.3'
 
 steps:
 
@@ -64,7 +65,9 @@ steps:
 
 
 - task: HelmInstaller@0
-  displayName: 'Install Helm 2.12.3'
+  displayName: 'Install Helm $(helmVersion)'
+  inputs: 
+    helmVersion: $(helmVersion)
 
 - task: HelmDeploy@0
   inputs:
