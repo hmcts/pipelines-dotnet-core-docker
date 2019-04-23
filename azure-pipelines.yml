@@ -76,7 +76,7 @@ steps:
     kubernetesServiceEndpoint: 'a993ee82-40e5-4d87-a6f1-75f0a0458016'
     namespace: 'default'
     tillerNamespace: 'tiller'
-    command: 'install'
+    command: 'upgrade'
     chartName: 'vh-web-app'
     enableTls: true
     caCert: 'vh_kube_dev_ca.cert.pem'
