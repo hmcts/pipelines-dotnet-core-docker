@@ -74,6 +74,6 @@ steps:
     command: 'install'
     chartName: 'vh-web-app'
     enableTls: true
-    caCert: '$(Agent.TempDirectory)/vh_kube_dev_ca.cert.pem'
-    certificate: '$(Agent.TempDirectory)/vh_kube_dev_helm.cert.pem'
-    privatekey: '$(Agent.TempDirectory)/vh_kube_dev_helm.key.pem'
+    caCert: 'vh_kube_dev_ca.cert.pem'
+    certificate: 'vh_kube_dev_helm.cert.pem'
+    privatekey: 'vh_kube_dev_helm.key.pem'
