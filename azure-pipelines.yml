@@ -13,8 +13,22 @@ variables:
   imageName: 'vhinfrastructure.azurecr.io/vh-docker:$(Build.BuildId)'
   azureSubscriptionEndpoint: 'Reform-CFT-VH-Dev'
   azureContainerRegistry: 'vhinfrastructure.azurecr.io'
+  helmVersion: '2.12.3'
 
 steps:
+
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'vh_kube_dev_helm.key.pem'
+
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'vh_kube_dev_helm.cert.pem'
+
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'vh_kube_dev_ca.cert.pem'
+
 - task: Docker@1
   displayName: Build image
   inputs:
@@ -50,20 +64,23 @@ steps:
     imageName: $(azureContainerRegistry)/$(Build.Repository.Name):latest
 
 
-- bash: |
-   helm repo add $(registryName) https://$(registryName).azurecr.io/helm/v1/repo --username $(registryLogin) --password $(registryPassword) 
-  displayName: 'Bash Script'
-
 - task: HelmInstaller@0
-  displayName: 'Install Helm 2.9.1'
+  displayName: 'Install Helm $(helmVersion)'
+  inputs: 
+    helmVersion: $(helmVersion)
+    checkLatestHelmVersion: false
 
 - task: HelmDeploy@0
-  displayName: 'helm upgrade'
   inputs:
-    azureSubscription: 'Reform-CFT-VH-Dev'
-    azureResourceGroup: 'vh_dev_kubernetes_resource_group'
-    kubernetesCluster: 'vh_vhazure_dev'
-    namespace: default
-    command: upgrade
-    chartType: FilePath
-    chartPath: 'vh-web-app'
+    connectionType: 'Kubernetes Service Connection'
+    kubernetesServiceEndpoint: 'a993ee82-40e5-4d87-a6f1-75f0a0458016'
+    namespace: 'default'
+    tillerNamespace: 'tiller'
+    command: 'upgrade'
+    chartName: 'vh-web-app'
+    enableTls: true
+    caCert: 'vh_kube_dev_ca.cert.pem'
+    certificate: 'vh_kube_dev_helm.cert.pem'
+    privatekey: 'vh_kube_dev_helm.key.pem'
+    waitForExecution: false
+    releaseName: 'vh-web-app'
