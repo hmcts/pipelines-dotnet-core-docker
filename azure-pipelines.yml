@@ -44,21 +44,6 @@ stages:
       runOnce:
         deploy:
           steps:
-          - task: DownloadSecureFile@1
-            displayName: 'Download Secure File vh_kube_dev_helm.key.pem'
-            inputs:
-              secureFile: 'vh_kube_dev_helm.key.pem'
-
-          - task: DownloadSecureFile@1
-            displayName: 'Download Secure File vh_kube_dev_helm.cert.pem'
-            inputs:
-              secureFile: 'vh_kube_dev_helm.cert.pem'
-
-          - task: DownloadSecureFile@1
-            displayName: 'Download Secure File vh_kube_dev_ca.cert.pem'
-            inputs:
-              secureFile: 'vh_kube_dev_ca.cert.pem'
-
           - task: HelmInstaller@0
             displayName: 'Install Helm $(helmVersion)'
             inputs: 
@@ -79,3 +64,7 @@ stages:
                 privatekey: 'vh_kube_dev_helm.key.pem'
                 waitForExecution: false
                 releaseName: 'vh-web-app'
+
+          - task: DownloadSecureFile@1
+            inputs:
+              secureFile: 'vh_kube_dev_helm.key.pem'
