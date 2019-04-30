@@ -49,6 +49,8 @@ stages:
   jobs:
   - deployment: Default
     displayName: Deploy job
+    pool:
+    vmImage: 'ubuntu-16.04'
     environment: 'Default'
     strategy:
       runOnce:
