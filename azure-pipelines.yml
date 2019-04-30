@@ -46,9 +46,9 @@ stages:
 - stage: Deploy
   displayName: Deploy stage
   jobs:
-  - deployment: deploy
+  - deployment: Default
     displayName: Deploy job
-    environment: 'myFirstEnvironment'
+    environment: 'Default'
     strategy:
       runOnce:
         deploy:
