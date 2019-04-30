@@ -15,6 +15,7 @@ variables:
 stages:
 - stage: Build
   displayName: Build stage
+  pool: vh-ubuntu-test
   jobs:  
   - job: Build
     displayName: Docker image
