@@ -18,7 +18,8 @@ stages:
   jobs:  
   - job: Build
     displayName: Docker image
-    pool: ubuntu-16.04
+    pool:
+      vmImage: 'ubuntu-16.04'
     steps:
     - task: DownloadSecureFile@1
       inputs:
