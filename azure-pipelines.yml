@@ -21,18 +21,6 @@ stages:
     pool:
       vmImage: 'ubuntu-16.04'
     steps:
-    - task: DownloadSecureFile@1
-      inputs:
-        secureFile: 'vh_kube_dev_helm.key.pem'
-
-    - task: DownloadSecureFile@1
-      inputs:
-        secureFile: 'vh_kube_dev_helm.cert.pem'
-
-    - task: DownloadSecureFile@1
-      inputs:
-        secureFile: 'vh_kube_dev_ca.cert.pem'
-
     - task: Docker@2
       displayName: buildAndPush
       inputs:
@@ -56,8 +44,17 @@ stages:
       runOnce:
         deploy:
           steps:
-          - powershell: Write-Host "run your deployment steps"
-            displayName: Run Deployment
+          - task: DownloadSecureFile@1
+            inputs:
+              secureFile: 'vh_kube_dev_helm.key.pem'
+
+          - task: DownloadSecureFile@1
+            inputs:
+                secureFile: 'vh_kube_dev_helm.cert.pem'
+
+          - task: DownloadSecureFile@1
+            inputs:
+                secureFile: 'vh_kube_dev_ca.cert.pem'
 
           - task: HelmInstaller@0
             displayName: 'Install Helm $(helmVersion)'
