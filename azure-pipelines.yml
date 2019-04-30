@@ -15,10 +15,10 @@ variables:
 stages:
 - stage: Build
   displayName: Build stage
-  pool: vh-ubuntu-test
   jobs:  
   - job: Build
     displayName: Docker image
+    pool: vh-ubuntu-test
     steps:
     - task: DownloadSecureFile@1
       inputs:
