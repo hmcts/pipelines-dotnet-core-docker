@@ -17,7 +17,7 @@ stages:
   displayName: Build stage
   jobs:  
   - job: Build
-    displayName: Build job
+    displayName: Docker image
     steps:
     - task: DownloadSecureFile@1
       inputs:
