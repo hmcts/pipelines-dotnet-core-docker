@@ -51,9 +51,7 @@ stages:
           - task: DownloadSecureFile@1
             inputs:
               secureFile: 'vh_kube_dev_helm.cert.pem'
-          - task: DownloadSecureFile@1
-            inputs:
-              secureFile: 'vh_kube_dev_ca.cert.pem'
+
 
           - task: HelmInstaller@0
             displayName: 'Install Helm $(helmVersion)'
