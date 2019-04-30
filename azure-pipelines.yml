@@ -19,9 +19,8 @@ stages:
   - job: Build
     displayName: Build job
     steps:
-
-  - task: DownloadSecureFile@1
-    inputs:
+    - task: DownloadSecureFile@1
+      inputs:
         secureFile: 'vh_kube_dev_helm.key.pem'
 
   - task: DownloadSecureFile@1
