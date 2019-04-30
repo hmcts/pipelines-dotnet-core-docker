@@ -32,9 +32,6 @@ stages:
       inputs:
         secureFile: 'vh_kube_dev_ca.cert.pem'
 
-    - task: DockerInstaller@0
-      displayName: 'Install Docker 17.09.0-ce'
-
     - task: Docker@2
       displayName: buildAndPush
       inputs:
